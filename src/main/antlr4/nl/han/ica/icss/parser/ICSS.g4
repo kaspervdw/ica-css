@@ -10,19 +10,33 @@ id: HASHTAG selector;
 
 class: DOT selector;
 
-selector: VARCHAR+;
+selector: VARCHAR;
 
 assignment: attribute COLON value SEMICOLON;
 
 attribute: (attributepart HYPHEN attribute) | attributepart;
 
-attributepart: VARCHAR+;
+attributepart: VARCHAR;
 
-value: (HASHTAG VARCHAR+) | VARCHAR+;
+value: hexcode | dimension;
 
+hexcode: HEXCODE;
 
+dimension: DIMENSION;
 
-VARCHAR: [a-zA-Z0-9];
+fragment
+HEX: [a-fA-F0-9];
+
+fragment
+DIGIT: [0-9];
+
+NUMBER: DIGIT+;
+
+VARCHAR: [a-zA-Z0-9]+;
+
+DIMENSION: NUMBER 'px';
+
+HEXCODE: HASHTAG HEX HEX HEX HEX HEX HEX;
 
 HASHTAG: '#';
 
@@ -33,5 +47,9 @@ COLON: ':';
 SEMICOLON: ';';
 
 HYPHEN: '-';
+
+UNDERSCORE: '_';
+
+PERCENT: '%';
 
 WS: [ \t\r\n]+ -> skip;
