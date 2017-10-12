@@ -12,21 +12,25 @@ class: DOT selector;
 
 selector: VARCHAR+;
 
-assignment: attribute COLON value;
+assignment: attribute COLON value SEMICOLON;
 
-attribute: VARCHAR+;
+attribute: (attributepart HYPHEN attribute) | attributepart;
 
-value: (HASH VARCHAR) | VARCHAR;
+attributepart: VARCHAR+;
+
+value: (HASHTAG VARCHAR+) | VARCHAR+;
 
 
 
-VARCHAR: [a-zA-Z0-9]+;
+VARCHAR: [a-zA-Z0-9];
 
 HASHTAG: '#';
 
 DOT: '.';
 
 COLON: ':';
+
+SEMICOLON: ';';
 
 HYPHEN: '-';
 
